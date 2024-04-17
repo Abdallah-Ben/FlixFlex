@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "657539682169",
+    "project_id": "nstest-c1ac6",
+    "storage_bucket": "nstest-c1ac6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:657539682169:android:07011aa57d00fd8748a9a8",
+        "android_client_info": {
+          "package_name": "com.nstest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0tvNpN0Twk2YV_NH_4idiAWn6MrHVKto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
