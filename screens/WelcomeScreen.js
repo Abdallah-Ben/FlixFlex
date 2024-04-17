@@ -30,7 +30,7 @@ export default function WelcomeScreen() {
             <TouchableOpacity onPress={() => navigation.navigate('Login')}>
               <Text style={{fontWeight: '400', color: '#000000'}}>
                 {' '}
-                Connexion
+                Connectez-vous
               </Text>
             </TouchableOpacity>
           </View>
