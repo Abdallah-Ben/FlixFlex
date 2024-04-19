@@ -1,7 +1,16 @@
 import React from 'react';
-import {View, Image, Alert, Button, StyleSheet, Text} from 'react-native';
+import {
+  View,
+  Image,
+  Alert,
+  Button,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import {themeColors} from '../theme/';
 import auth from '@react-native-firebase/auth';
+// import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Profile = () => {
   const signOut = () => {
@@ -26,7 +35,7 @@ const Profile = () => {
     <View style={styles.container}>
       <View
         style={{
-          flex: 0.2,
+          flex: 0.25,
           alignItems: 'center',
           justifyContent: 'space-evenly',
         }}>
@@ -34,15 +43,14 @@ const Profile = () => {
           source={require('../assets/icons/icon.png')}
           style={styles.image}
         />
-        <Text style={{color: themeColors.Black}}>{Email}</Text>
+        <Text style={{fontSize: 16, color: 'white'}}>{Email}</Text>
       </View>
-      <View
-        style={{
-          flex: 0.1,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <Button title="déconnecter" onPress={handleSignOut} />
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={handleSignOut}>
+          <Text style={{fontSize: 20, color: themeColors.Black}}>
+            Déconnecter
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -50,18 +58,29 @@ const Profile = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // Makes the view occupy the whole screen
-    justifyContent: 'space-between', // Distributes content vertically with space at the top and bottom
+    flex: 1,
+    justifyContent: 'space-between',
+    backgroundColor: themeColors.BGHomeColor,
   },
   image: {
-    resizeMode: 'center', // Centers the image horizontally
+    resizeMode: 'center',
     height: 100,
     width: 100,
     borderRadius: 50,
   },
-  // button: {
-  //   marginBottom: 50, // Adds some bottom margin
-  // },
+  buttonContainer: {
+    flex: 0.1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    width: 200,
+    height: 50,
+    backgroundColor: themeColors.BG,
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default Profile;

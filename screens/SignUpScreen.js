@@ -13,12 +13,11 @@ import {ArrowLeftIcon} from 'react-native-heroicons/solid';
 import {themeColors} from '../theme';
 import {useNavigation} from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
-// import {Mycontext} from '../Context';
+
 const emailVer = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
 const passVer = new RegExp(
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
 );
-// const passVer = new RegExp(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$/)
 
 export default function LoginScreen() {
   const navigation = useNavigation();
@@ -36,7 +35,6 @@ export default function LoginScreen() {
           const val = await auth()
             .createUserWithEmailAndPassword(m, p)
             .then(e => {
-              // Dispatch(Actions.setUid(e.user.uid));
               console.info('User account created & signed in!');
             })
             .catch(error => {
@@ -102,12 +100,7 @@ export default function LoginScreen() {
             Adresse e-mail
           </Text>
           <TextInput
-            style={{
-              backgroundColor: 'rgb(243 244 246)',
-              borderRadius: 16,
-              padding: 16,
-              marginBottom: 12,
-            }}
+            style={styles.emailInput}
             value={mail}
             onChangeText={e => setMail(e)}
             placeholder="email"
@@ -118,11 +111,7 @@ export default function LoginScreen() {
             Mot de passe
           </Text>
           <TextInput
-            style={{
-              backgroundColor: 'rgb(243 244 246)',
-              borderRadius: 16,
-              padding: 16,
-            }}
+            style={styles.passInput}
             secureTextEntry
             placeholder="password"
             autoCapitalize="none"
@@ -179,5 +168,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 32,
     paddingTop: 32,
+  },
+  passInput: {
+    backgroundColor: 'rgb(243 244 246)',
+    borderRadius: 16,
+    padding: 16,
+  },
+  emailInput: {
+    backgroundColor: 'rgb(243 244 246)',
+    borderRadius: 16,
+    padding: 16,
+    marginBottom: 12,
   },
 });

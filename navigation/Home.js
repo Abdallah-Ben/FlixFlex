@@ -1,24 +1,41 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Profile from '../screens/Profile';
-import {UserIcon} from 'react-native-heroicons/outline';
-import {themeColors} from '../theme';
+import React from 'react';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import BottomTabNav from './BottomTabNav';
+import Movies from '../screens/Movies';
+import Series from '../screens/Series';
+import Detailes from '../screens/Detailes';
+import Search from '../screens/Search';
 
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
-export default function Home() {
+export default function AuthStack() {
   return (
-    <Tab.Navigator screenOptions={{headerShown: false}}>
-      <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          tabBarIcon: ({focused}) => (
-            <UserIcon color={focused ? themeColors.BTN : themeColors.Gray} />
-          ),
-          tabBarActiveTintColor: themeColors.BTN,
-          tabBarInactiveTintColor: themeColors.Gray,
-        }}
+    <Stack.Navigator initialRouteName="BottomTabNav">
+      <Stack.Screen
+        name="BottomTabNav"
+        options={{headerShown: false}}
+        component={BottomTabNav}
       />
-    </Tab.Navigator>
+      <Stack.Screen
+        name="Fimls"
+        options={{headerShown: false}}
+        component={Movies}
+      />
+      <Stack.Screen
+        name="Series"
+        options={{headerShown: false}}
+        component={Series}
+      />
+      <Stack.Screen
+        name="Detailes"
+        options={{headerShown: false}}
+        component={Detailes}
+      />
+      <Stack.Screen
+        name="Search"
+        options={{headerShown: false}}
+        component={Search}
+      />
+    </Stack.Navigator>
   );
 }
