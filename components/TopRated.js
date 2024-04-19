@@ -6,10 +6,10 @@ import MovieCard from './MovieCard';
 import {themeColors} from '../theme';
 
 let {width} = Dimensions.get('window');
-export default function TopRated({data}) {
+export default function TopRated({data, type}) {
   const navigation = useNavigation();
   const onPress = item => {
-    navigation.push('Detailes', item);
+    navigation.push('Detailes', {item, type});
   };
 
   return (

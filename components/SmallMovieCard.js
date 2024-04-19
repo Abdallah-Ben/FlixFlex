@@ -32,7 +32,7 @@ const SmallMovieCard = ({ImagePath, title, index, onPress}) => {
         onLoadEnd={() => setloading(false)}
       />
       <Text style={{marginLeft: 4, marginTop: 2, color: 'gray'}}>
-        {title.length > 22 ? title.slice(0, 22) + '...' : title}
+        {title?.length > 22 ? title.slice(0, 22) + '...' : title}
       </Text>
     </TouchableOpacity>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, ScrollView, Image} from 'react-native';
 import {imagePath} from '../api/publicApi';
+import {themeColors} from '../theme';
 
 export default function ActorsList({data}) {
   return (
@@ -11,7 +12,7 @@ export default function ActorsList({data}) {
           lineHeight: 28,
           marginBottom: 20,
           marginHorizontal: 16,
-          color: 'white',
+          color: themeColors.BG,
         }}>
         Les acteurs
       </Text>
@@ -36,9 +37,7 @@ export default function ActorsList({data}) {
                   <Image
                     style={{width: 80, borderRadius: 16, height: 96}}
                     source={{
-                      uri:
-                        imagePath(person?.profile_path, 185) ||
-                        '../assets/images/noImage.png',
+                      uri: imagePath(person?.profile_path, 185),
                     }}
                   />
                 </View>

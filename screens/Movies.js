@@ -1,11 +1,8 @@
 import {
   StyleSheet,
-  Text,
   View,
-  TouchableOpacity,
   FlatList,
   ActivityIndicator,
-  Image,
   Dimensions,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
@@ -16,7 +13,6 @@ import Loading from '../components/Loading';
 import {getCall} from '../api/caller';
 import {moviesListEP, topRatedMoviesEP} from '../constants/constants';
 import TopRated from '../components/TopRated';
-import {imagePath} from '../api/publicApi';
 import SmallMovieCard from '../components/SmallMovieCard';
 const {width, height} = Dimensions.get('window');
 const Movies = () => {
@@ -64,13 +60,19 @@ const Movies = () => {
       {/* Header */}
       <Header
         title={'Films'}
-        onPressSearch={() => navigation.navigate('Search')}
+        onPressSearch={() => navigation.navigate('Search', 'film')}
       />
 
       <FlatList
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
-          <>{topRated.length ? <TopRated data={topRated} /> : <Loading />}</>
+          <>
+            {topRated.length ? (
+              <TopRated data={topRated} type={'film'} />
+            ) : (
+              <Loading />
+            )}
+          </>
         }
         onRefresh={async () => {}}
         refreshing={false}
@@ -80,7 +82,7 @@ const Movies = () => {
             id={item.id}
             ImagePath={item.poster_path}
             title={item.title}
-            onPress={() => navigation.push('Detailes', item)}
+            onPress={() => navigation.push('Detailes', {item, type: 'film'})}
           />
         )}
         keyExtractor={(item, index) => index}

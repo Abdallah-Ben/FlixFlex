@@ -7,21 +7,24 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import Header from '../components/Header';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {themeColors} from '../theme';
 import SmallMovieCard from '../components/SmallMovieCard';
 import Loading from '../components/Loading';
 import {getCall} from '../api/caller';
-import {searchMoviesEP} from '../constants/constants';
+import {searchMoviesEP, searchSeriesEP} from '../constants/constants';
 
 const Search = () => {
+  const {params} = useRoute();
   const navigation = useNavigation();
   const [moviesList, setmoviesList] = useState([]);
 
   const handleSearch = async value => {
     if (value && value.length > 2) {
       setmoviesList([]);
-      const data = await getCall(searchMoviesEP(value));
+      const url =
+        params === 'serie' ? searchSeriesEP(value) : searchMoviesEP(value);
+      const data = await getCall(url);
       if (data) {
         setmoviesList(data.results);
       }
@@ -38,7 +41,9 @@ const Search = () => {
           <View style={styles.searchContainer}>
             <TextInput
               onChangeText={handleSearch}
-              placeholder="Rechercher des films"
+              placeholder={`Rechercher des ${
+                params === 'serie' ? 'séries' : 'films'
+              }`}
               placeholderTextColor={'lightgray'}
               style={styles.inputStyle}
             />
@@ -53,7 +58,7 @@ const Search = () => {
             id={item.id}
             ImagePath={item.poster_path}
             title={item.title}
-            onPress={() => navigation.push('Detailes', item)}
+            onPress={() => navigation.push('Detailes', {item, type: params})}
           />
         )}
         keyExtractor={(item, index) => index}
